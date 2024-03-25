@@ -2,12 +2,12 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-    private static InputStreamReader p = new InputStreamReader (System.in);
+    private static InputStreamReader p = new InputStreamReader(System.in);
     private static BufferedReader input = new BufferedReader(p);
     private static ArrayList<ToDoList> DataToDoList = new ArrayList<ToDoList>();
 
     public static void main(String[] args) throws NumberFormatException, IOException {
-        while (true){
+        while (true) {
             System.out.println("\nPilih Menu!");
             System.out.println("===========");
             System.out.println("1.Buat Tugas");
@@ -22,23 +22,23 @@ public class Main {
                     buatTugas();
                     break;
                 case 2:
-                    lihatTugas();
+                        lihatTugas();
                     break;
                 case 3:
-                    ubahTugas();
+                        ubahTugas();
                     break;
                 case 4:
-                    hapusTugas();
+                        hapusTugas();
                     break;
                 case 5:
-                    ubahStatus();
+                        ubahStatus();
                     break;
                 case 6:
-                System.out.println("Program Selesai!");
-                System.exit(0);
+                    System.out.println("Program Selesai!");
+                    System.exit(0);
                     break;
                 default:
-                System.out.println("Pilihan tidak valid");
+                    System.out.println("Pilihan tidak valid");
                     break;
             }
         }
@@ -48,8 +48,7 @@ public class Main {
     static void buatTugas() throws NumberFormatException, IOException {
         System.out.println("Silahkan Masukkan Data!");
         System.out.println("=======================");
-        
-        
+
         int id = DataToDoList.size() + 1;
         System.out.print("Masukkan Judul tugas      : ");
         String tugas = input.readLine();
@@ -60,60 +59,76 @@ public class Main {
 
         System.out.print("Apakah tugas penting? (Y/N)");
         String urgent = input.readLine().toUpperCase();
-        
+
         if (urgent.equals("Y")) {
-            System.out.print("A1");
-            PriorityToDoList tdl = new PriorityToDoList(id, tugas, deskripsi, tenggat, false);
+            TugasPriority tdl = new TugasPriority(id, tugas, deskripsi, tenggat, false);
             DataToDoList.add(tdl);
-        }else{
-            System.out.print("B2");
-            ToDoList tdl = new ToDoList(id, tugas, deskripsi, tenggat, false);
+        } else {
+            TugasBiasa tdl = new TugasBiasa(id, tugas, deskripsi, tenggat, false);
             DataToDoList.add(tdl);
         }
     }
-    
+
     // Read/Display/Lihat data
     protected static void lihatTugas() {
-        for(int i = 0; i<DataToDoList.size(); i++){
-            DataToDoList.get(i).display();
-            System.out.println("\n");
+        if (DataToDoList.isEmpty()) {
+            System.out.println("Data masih kosong!");            
+        }else{
+            for (int i = 0; i < DataToDoList.size(); i++) {
+                DataToDoList.get(i).display();
+                System.out.println("\n");
+            }
         }
     }
-    
-    // // Update/ubah/ganti data baru
+
+    // Update/ubah/ganti data baru
     static void ubahTugas() throws IOException {
         lihatTugas();
         System.out.print("Masukkan ID tugas yang ingin di ubah : ");
-        int targetId = Integer.parseInt(input.readLine()) - 1;
+        int targetId = Integer.parseInt(input.readLine());
 
-        System.out.print("Masukkan judul tugas baru     : ");
-        String judulBaru = input.readLine();
-        DataToDoList.get(targetId).set_judul(judulBaru);
-        System.out.print("Masukkan deskripsi tugas baru : ");
-        String deskripsiBaru = input.readLine();
-        DataToDoList.get(targetId).set_deskripsi(deskripsiBaru);
-        System.out.print("Masukkan tenggat tugas baru   : ");
-        String tenggatBaru = input.readLine();
-        DataToDoList.get(targetId).set_tenggat(tenggatBaru);
-        System.out.println("Data berhasil di ubah!");
+        if (targetId > DataToDoList.size()) {
+            System.out.println("Data dengan ID " + targetId + " tidak ditemukan!");
+        }else{
+            System.out.print("Masukkan judul tugas baru     : ");
+            String judulBaru = input.readLine();
+            DataToDoList.get(targetId - 1).set_judul(judulBaru);
+            System.out.print("Masukkan deskripsi tugas baru : ");
+            String deskripsiBaru = input.readLine();
+            DataToDoList.get(targetId - 1).set_deskripsi(deskripsiBaru);
+            System.out.print("Masukkan tenggat tugas baru   : ");
+            String tenggatBaru = input.readLine();
+            DataToDoList.get(targetId - 1).set_tenggat(tenggatBaru);
+            System.out.println("Data berhasil di ubah!");
+        }
+
     }
 
     // Delete/Hapus data
     static void hapusTugas() throws IOException {
         lihatTugas();
         System.out.print("Masukkan ID tugas yang ingin di hapus : ");
-        int targetId = Integer.parseInt(input.readLine()) - 1;
+        int targetId = Integer.parseInt(input.readLine());
 
-        DataToDoList.remove(targetId);    
-        System.out.println("Data berhasil di hapus!");
+        if (targetId > DataToDoList.size()) {
+            System.out.println("Data dengan ID " + targetId + " tidak ditemukan!");
+        }else{
+            DataToDoList.remove(targetId - 1);
+            System.out.println("Data berhasil di hapus!");
+        }
     }
 
     static void ubahStatus() throws IOException {
         lihatTugas();
         System.out.print("Masukkan ID tugas yang ingin di ubah statusnya : ");
-        int targetId = Integer.parseInt(input.readLine()) - 1;
+        int targetId = Integer.parseInt(input.readLine());
 
-        DataToDoList.get(targetId).set_status(true);
+        if (targetId > DataToDoList.size()) {
+            System.out.println("Data dengan ID " + targetId + " tidak ditemukan!");
+        }else{
+            boolean currStatus = DataToDoList.get(targetId - 1).get_status();
+            DataToDoList.get(targetId - 1).set_status(!currStatus);
+        }
     }
-    
+
 }

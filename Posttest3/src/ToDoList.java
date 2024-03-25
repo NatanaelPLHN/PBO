@@ -1,6 +1,6 @@
 public class ToDoList {
 
-    private int id;
+    private int id, prioritas;
     private String judul, deskripsi, tenggat;
     private boolean status;
 
@@ -33,6 +33,10 @@ public class ToDoList {
         return status;
     }
 
+    public int get_prioritas() {
+        return prioritas;
+    }
+
     // setter
     public void set_judul(String judul) {
         this.judul = judul;
@@ -53,6 +57,10 @@ public class ToDoList {
     public void set_status(boolean status) {
         this.status = status;
     }
+    
+    public void set_prioritas(int prioritas) {
+        this.prioritas = prioritas;
+    }
 
     public void display() {
         System.out.println("ID Tugas        :\t" + this.id);
@@ -61,13 +69,9 @@ public class ToDoList {
         System.out.println("Tenggat  Tugas  :\t" + this.tenggat);
 
         if (status == true) {
-            System.out.println("Status Tugas    :\t selesai!");
+            System.out.println("Status Tugas    :\t Selesai!");
         } else {
             System.out.println("Status Tugas    :\t Belom selesai");
         }
-    }
-
-    public int getId() {
-        return this.id;
     }
 }

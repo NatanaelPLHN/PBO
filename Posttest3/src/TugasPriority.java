@@ -1,7 +1,8 @@
-public class PriorityToDoList extends ToDoList {
+public class TugasPriority extends ToDoList {
 
-    public PriorityToDoList(int id, String judul, String deskripsi, String tenggat, boolean status){
+    public TugasPriority(int id, String judul, String deskripsi, String tenggat, boolean status){
         super(id, judul, deskripsi, tenggat, status);
+        set_prioritas(1);
     }
 
     @Override
@@ -11,3 +12,4 @@ public class PriorityToDoList extends ToDoList {
     }
 
 }
+
