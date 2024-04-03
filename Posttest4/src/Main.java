@@ -23,10 +23,7 @@ public class Main {
                     Function.lihatTugas();
                     break;
                 case 3:
-                    Function.ubahTugas();
-                    break;
-                case 4:
-                    System.out.println("\nHapus Berdasarkan?");
+                    System.out.println("\nUbah Berdasarkan?");
                     System.out.println("===========");
                     System.out.println("1.ID Tugas");
                     System.out.println("2.Judul Tugas");
@@ -34,12 +31,36 @@ public class Main {
 
                     if (pilih2 == 1) {
                         Function.lihatTugas();
+                        System.out.print("Masukkan ID tugas yang ingin di ubah : ");
+                        int targetId = Integer.parseInt(input.readLine());
+                        Function.ubahTugas(targetId);
+                        break;
+                    }
+                    if (pilih2 == 2) {
+                        Function.lihatTugas();
+                        System.out.print("Masukkan JUDUL tugas yang ingin di ubah : ");
+                        String targetJudul = input.readLine();
+                        Function.ubahTugas(targetJudul);
+                        break;
+                    } else {
+                        System.out.println("Pilihan tidak valid");
+                        break;
+                    }
+                case 4:
+                    System.out.println("\nHapus Berdasarkan?");
+                    System.out.println("===========");
+                    System.out.println("1.ID Tugas");
+                    System.out.println("2.Judul Tugas");
+                    int pilih3 = Integer.parseInt(input.readLine());
+
+                    if (pilih3 == 1) {
+                        Function.lihatTugas();
                         System.out.print("Masukkan ID tugas yang ingin di hapus : ");
                         int targetId = Integer.parseInt(input.readLine());
                         Function.hapusTugas(targetId);
                         break;
                     }
-                    if (pilih2 == 2) {
+                    if (pilih3 == 2) {
                         Function.lihatTugas();
                         System.out.print("Masukkan JUDUL tugas yang ingin di hapus : ");
                         String targetJudul = input.readLine();

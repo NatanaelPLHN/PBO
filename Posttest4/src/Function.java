@@ -46,12 +46,8 @@ public class Function {
         }
     }
 
-    // Update/ubah/ganti data baru
-    static void ubahTugas() throws IOException {
-        lihatTugas();
-        System.out.print("Masukkan ID tugas yang ingin di ubah : ");
-        int targetId = Integer.parseInt(input.readLine());
-
+    // Update/ubah/ganti data baru(+ overloading)
+    static void ubahTugas(int targetId) throws IOException {
         if (targetId > DataToDoList.size()) {
             System.out.println("Data dengan ID " + targetId + " tidak ditemukan!");
         } else {
@@ -65,6 +61,26 @@ public class Function {
             String tenggatBaru = input.readLine();
             DataToDoList.get(targetId - 1).set_tenggat(tenggatBaru);
             System.out.println("Data berhasil di ubah!");
+        }
+
+    }
+
+    static void ubahTugas(String targetJudul) throws IOException {
+        for (int i = 0; i <= DataToDoList.size(); i++) {
+            if (DataToDoList.get(i).get_judul().equals(targetJudul)) {
+
+                System.out.print("Masukkan judul tugas baru     : ");
+                String judulBaru = input.readLine();
+                DataToDoList.get(i).set_judul(judulBaru);
+                System.out.print("Masukkan deskripsi tugas baru : ");
+                String deskripsiBaru = input.readLine();
+                DataToDoList.get(i).set_deskripsi(deskripsiBaru);
+                System.out.print("Masukkan tenggat tugas baru   : ");
+                String tenggatBaru = input.readLine();
+                DataToDoList.get(i).set_tenggat(tenggatBaru);
+                System.out.println("Data berhasil di ubah!");
+                break;
+            }
         }
 
     }
