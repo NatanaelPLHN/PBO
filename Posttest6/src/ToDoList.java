@@ -1,8 +1,10 @@
-abstract class ToDoList {
-    private int id;
-    protected int prioritas; 
+public abstract class ToDoList {
+
+    private int id, prioritas;
     private String judul, deskripsi, tenggat;
     private boolean status;
+
+    public ToDoList() {}
 
     public ToDoList(int id, String judul, String deskripsi, String tenggat, boolean status) {
         this.id = id;
@@ -12,7 +14,7 @@ abstract class ToDoList {
         this.status = status;
     }
 
-    // Getter methods
+    // getter
     public String get_judul() {
         return judul;
     }
@@ -37,7 +39,7 @@ abstract class ToDoList {
         return prioritas;
     }
 
-    // Setter methods
+    // setter
     public void set_judul(String judul) {
         this.judul = judul;
     }
@@ -58,7 +60,9 @@ abstract class ToDoList {
         this.status = status;
     }
     
-    public abstract void set_prioritas(int prioritas);
+    public void set_prioritas(int prioritas) {
+        this.prioritas = prioritas;
+    }
 
     public void display() {
         System.out.println("ID Tugas        :\t" + this.id);
@@ -69,7 +73,7 @@ abstract class ToDoList {
         if (status == true) {
             System.out.println("Status Tugas    :\t Selesai!");
         } else {
-            System.out.println("Status Tugas    :\t Belum selesai");
+            System.out.println("Status Tugas    :\t Belom selesai");
         }
     }
 }

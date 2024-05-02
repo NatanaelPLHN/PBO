@@ -1,12 +1,31 @@
-class TugasBiasa extends ToDoList {
+public class TugasBiasa extends ToDoList {
+    private int id;
+    private String tugas;
+    private String deskripsi;
+    private String tenggat;
+    private boolean status;
 
-    public TugasBiasa(int id, String judul, String deskripsi, String tenggat, boolean status) {
-        super(id, judul, deskripsi, tenggat, status);
-        set_prioritas(2);
+    public TugasBiasa(int id, String tugas, String deskripsi, String tenggat, boolean status) {
+        this.id = id;
+        this.tugas = tugas;
+        this.deskripsi = deskripsi;
+        this.tenggat = tenggat;
+        this.status = status;
     }
 
     @Override
-    public void set_prioritas(int prioritas) {
-        this.prioritas = prioritas;
+    public void display() {
+        System.out.println("ID: " + id);
+        System.out.println("Tugas: " + tugas);
+        System.out.println("Deskripsi: " + deskripsi);
+        System.out.println("Tenggat: " + tenggat);
+        System.out.println("Status: " + (status? "Done" : "Not Done"));
     }
+
+    @Override
+    public void set_status(boolean status) {
+        this.status = status;
+    }
+
+    // getters and setters
 }

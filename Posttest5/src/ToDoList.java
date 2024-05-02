@@ -58,7 +58,7 @@ abstract class ToDoList {
         this.status = status;
     }
     
-    public abstract void setPrioritas(int prioritas);
+    public void setPrioritas(int prioritas)
 
     public void display() {
         System.out.println("ID Tugas        :\t" + this.id);

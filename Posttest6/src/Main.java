@@ -1,8 +1,8 @@
 import java.io.*;
 
 public final class Main {
-    private static InputStreamReader p = new InputStreamReader(System.in);
-    private static BufferedReader input = new BufferedReader(p);
+    private static final InputStreamReader p = new InputStreamReader(System.in);
+    private static final BufferedReader input = new BufferedReader(p);
 
     public static void main(String[] args) throws NumberFormatException, IOException {
         while (true) {
@@ -14,7 +14,7 @@ public final class Main {
             System.out.println("4.Hapus Tugas");
             System.out.println("5.Ubah Status");
             System.out.println("6.Exit\n");
-            final int pilih = Integer.parseInt(input.readLine());
+            int pilih = Integer.parseInt(input.readLine());
             switch (pilih) {
                 case 1:
                     Function.buatTugas();
@@ -84,4 +84,14 @@ public final class Main {
         }
     }
 
+    public static final void printMenu() {
+        System.out.println("\nPilih Menu!");
+        System.out.println("===========");
+        System.out.println("1.Buat Tugas");
+        System.out.println("2.Lihat Tugas");
+        System.out.println("3.Ubah Tugas");
+        System.out.println("4.Hapus Tugas");
+        System.out.println("5.Ubah Status");
+        System.out.println("6.Exit\n");
+    }
 }
